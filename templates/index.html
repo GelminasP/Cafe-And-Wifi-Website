@@ -1,0 +1,101 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <title>Cafe & Wifi</title>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no"/>
+    <link rel="stylesheet" href="static/css/main.css"/>
+</head>
+<body class="homepage is-preload">
+<div id="page-wrapper">
+
+    <!-- Header -->
+    <section id="header">
+        <div class="container">
+
+            <!-- Logo -->
+            <h1 id="logo"><a href="index.html">Cafe and Wifi</a></h1>
+            <p>The finest cafes in London for working</p>
+
+            <!-- Nav -->
+            <nav id="nav">
+                <ul>
+                    <li><a class="icon solid fa-home" href="{{url_for('add_cafe')}}"><span>Add A Cafe</span></a></li>
+                </ul>
+            </nav>
+
+        </div>
+    </section>
+
+    <!-- Cafe List -->
+    <section id="content">
+        <div class="container">
+            <header>
+                <h2>Our Cafe List in <strong>London</strong>!</h2>
+            </header>
+      {% for row in all_cafes %}
+        <div class="row aln-center">
+            {% for cafe in row %}
+
+            <div class="col-4 col-6-medium col-12-small align-items-stretch">
+                <div class="image featured" style="width: 25rem;">
+                    <img src="{{ cafe.img_url }}" style="height:215px">
+                    <div>
+                        <h5 class="card-title">{{ cafe.name }}</h5>
+                        <div>
+                            <div class="col-lg-6 mb-3">
+                                <h6 class="card-subtitle text-muted mb-1"> {{ cafe.location }} </h6>
+                                <a href="{{ cafe.map_url }}" class="card-link"> Google Maps </a>
+                                <p class="card-text mt-2">
+                                    <i class="fas fa-coffee mr-3" aria-hidden="true"></i> {{ cafe.coffee_price }}
+                                    <br>
+                                    <i class="fas fa-chair mr-3" aria-hidden="true"></i> {{ cafe.seats}}
+                                </p>
+                            </div>
+
+                        </div>
+                        <p class="card-text items">
+                            {% if cafe.has_wifi == 1%}
+                            <i class="fas fa-wifi" aria-hidden="true"></i>
+                            {% endif %}
+                            {% if cafe.has_sockets == 1%}
+                            <i class="fas fa-plug" style="width: 1.25rem; text-align:center" aria-hidden="true"></i>
+                            {% endif %}
+                            {% if cafe.has_toilet == 1%}
+                            <i class="fas fa-toilet" aria-hidden="true"></i>
+                            {% endif %}
+                            {% if cafe.can_take_calls == 1%}
+                            <i class="fas fa-phone" aria-hidden="true"></i>
+                            {% endif %}
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            {% endfor %}
+        </div>
+        {% endfor %}
+        </div>
+    </section>
+
+
+    <!-- Footer -->
+    <div id="copyright" class="container">
+        <ul class="links">
+            <li>To report a closed cafe, contact me on <a href="https://www.linkedin.com/in/gelminas-pivoras-577b68144/">LinkedIn</a></li>
+            <li>&copy; Gelminas Pivoras. All rights reserved.</li>
+        </ul>
+    </div>
+
+</div>
+
+<!-- Scripts -->
+<script src="static/js/jquery.min.js"></script>
+<script src="static/js/jquery.dropotron.min.js"></script>
+<script src="static/js/browser.min.js"></script>
+<script src="static/js/breakpoints.min.js"></script>
+<script src="static/js/util.js"></script>
+<script src="static/js/main.js"></script>
+
+</body>
+</html>
